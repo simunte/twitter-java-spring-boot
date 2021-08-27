@@ -2,6 +2,7 @@ package com.twitter.demo.Services.Impl;
 
 
 import com.twitter.demo.Domain.Tweets;
+import com.twitter.demo.Dtos.TweetsDto;
 import com.twitter.demo.Repository.TweetsRepository;
 import com.twitter.demo.Services.TwitterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +36,18 @@ public class TwitterServiceImpl implements TwitterService{
     private TweetsRepository tweetsRepository;
 
     @Override
-    public List<String> getTweetsFromTweet() throws TwitterException {
+    public List<TweetsDto> getTweetsFromTweet() throws TwitterException {
         Twitter twitter = getTwitterInstance();
-        List<String> listTweets = twitter.getHomeTimeline().stream()
+        List<TweetsDto> listTweets = twitter.getHomeTimeline().stream()
                 .map(status -> {
                     Tweets entity = new Tweets();
+                    TweetsDto dto = new TweetsDto();
                     entity.setTweet(status.getText());
+                    entity.setUser(status.getUser().getName());
+                    dto.setUser(status.getUser().getName());
+                    dto.setStatus(status.getText());
                     tweetsRepository.save(entity);
-                    return status.getText();
+                    return dto;
                 })
                 .collect(Collectors.toCollection(LinkedList::new));
         return listTweets;

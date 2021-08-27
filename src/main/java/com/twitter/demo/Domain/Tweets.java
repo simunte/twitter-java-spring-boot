@@ -18,6 +18,8 @@ public class Tweets extends Base{
     @Lob
     private String tweet;
 
+    private String user;
+
     @CreatedDate
     @Column(name = "date_created", updatable = false)
     private Instant creationDate;

@@ -1,6 +1,7 @@
 package com.twitter.demo.Controller;
 
 
+import com.twitter.demo.Dtos.TweetsDto;
 import com.twitter.demo.Services.TwitterService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +26,8 @@ public class TwitterController {
 
     @GetMapping("/get/all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<String>> getAllTweetsFromTweet() throws TwitterException {
-        List<String> result = twitterService.getTweetsFromTweet();
+    public ResponseEntity<List<TweetsDto>> getAllTweetsFromTweet() throws TwitterException {
+        List<TweetsDto> result = twitterService.getTweetsFromTweet();
         return ResponseEntity.ok().body(result);
     }
 }
