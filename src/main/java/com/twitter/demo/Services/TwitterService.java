@@ -6,5 +6,5 @@ import twitter4j.TwitterException;
 import java.util.List;
 
 public interface TwitterService {
-    List<TweetsDto> getTweetsFromTweet() throws TwitterException;
+    List<TweetsDto> getTweetsFromTweeter() throws TwitterException;
 }

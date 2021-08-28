@@ -11,6 +11,10 @@ spring:
     hibernate.ddl-auto: update
     show-sql: false
 
+scheduling:
+  cron:
+    tweet: "*/30 * * * * *"
+
 twitter:
   apiKey: "6bMIUFw5XtmsYeMem0L3S2pN9"
   apiSecret: "EfYKEHP82Q9BGfu2HQAvLumw6BoFS1xC5DKI18YPBhJkRTDmjm"
